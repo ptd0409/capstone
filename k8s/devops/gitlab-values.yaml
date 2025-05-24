@@ -1,0 +1,7 @@
+externalUrl: http://gitlab.devops.local
+initialRootPassword: gitlabadmin
+nginx:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 32001

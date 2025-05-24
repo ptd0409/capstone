@@ -1,0 +1,4 @@
+service:
+  type: NodePort
+  nodePort: 32009
+elasticsearchHosts: "http://elasticsearch.devops.svc.cluster.local:9200"

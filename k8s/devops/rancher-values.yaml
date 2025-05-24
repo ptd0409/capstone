@@ -1,0 +1,10 @@
+hostname: rancher.devops.local
+replicas: 1
+ingress:
+  enabled: false
+  tls: false
+  hosts:
+    - rancher.devops.local
+service:
+  type: NodePort
+  nodePort: 32005
