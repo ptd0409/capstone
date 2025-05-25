@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import CustomerList from './components/CustomerList';
-import CustomerForm from './components/CustomerForm';
+import logo from './logo.svg';
+import './App.css';
+
 function App() {
-  const [customers, setCustomers] = useState([]);
-
-  const addCustomer = newCustomer => {
-    setCustomers(prev => [...prev, newCustomer]);
-  };
-
   return (
     <div className="App">
-      <h1>React Frontend for Microservices</h1>
-      <CustomerForm onAdd={addCustomer} />
-      <CustomerList />
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
