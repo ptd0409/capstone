@@ -2,11 +2,8 @@
 FROM node:18-alpine as builder
 
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
 COPY . .
+RUN npm install
 RUN npm run build
 
 # Step 2: Serve with Nginx
