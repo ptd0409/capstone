@@ -1,0 +1,29 @@
+# Node or Maven dependencies
+node_modules/
+target/
+
+# Build cache
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Git files
+.git
+.gitignore
+
+# Environment and secrets
+.env
+*.env
+
+# Docker
+.dockerignore
+Dockerfile*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

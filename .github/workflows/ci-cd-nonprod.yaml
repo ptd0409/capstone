@@ -1,0 +1,78 @@
+name: CI/CD - NonProd
+
+on:
+  push:
+    branches:
+      - develop
+      - feature/*
+      - hotfix/*
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push frontend
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }} ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }}
+
+      - name: Build and push microservice1
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${{ github.ref_name }} ./microservice1
+          docker push ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${{ github.ref_name }}
+
+      - name: Build and push microservice2
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }} ./microservice2
+          docker push ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }}
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME_NONPROD }}
+
+      - name: Set Namespace and Tag
+        run: |
+          echo "NAMESPACE=app-nonprod" >> $GITHUB_ENV
+          echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+
+      - name: Deploy manifests
+        run: |
+          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+
+          kubectl apply -f <(envsubst < k8s/namespace.yaml)
+          kubectl apply -f <(envsubst < k8s/frontend.yaml)
+          kubectl apply -f <(envsubst < k8s/microservice1.yaml)
+          kubectl apply -f <(envsubst < k8s/microservice2.yaml)
+          kubectl apply -f <(envsubst < k8s/db.yaml)
+          kubectl apply -f <(envsubst < k8s/ingress.yaml)
+
+      - name: Deploy observability stack
+        run: |
+          kubectl apply -f k8s/prometheus.yaml
+          kubectl apply -f k8s/fluentd.yaml
