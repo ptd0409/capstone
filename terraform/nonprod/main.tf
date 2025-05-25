@@ -1,5 +1,5 @@
 module "vpc" {
-  source           = "./modules/vpc"
+  source           = "../modules/vpc"
   name             = var.name
   cidr             = var.vpc_cidr
   azs              = var.azs
@@ -8,11 +8,11 @@ module "vpc" {
 }
 
 module "iam" {
-  source = "./modules/iam"
+  source = "../modules/iam"
 }
 
 module "eks" {
-  source               = "./modules/eks"
+  source               = "../modules/eks"
   cluster_name         = var.name
   vpc_id               = module.vpc.vpc_id
   subnet_ids           = module.vpc.private_subnet_ids
@@ -44,7 +44,7 @@ module "eks" {
 }
 
 module "bastion" {
-  source          = "./modules/ec2"
+  source          = "../modules/ec2"
   vpc_id          = module.vpc.vpc_id
   subnet_id       = module.vpc.public_subnet_ids[0]
   instance_type   = "t3.micro"

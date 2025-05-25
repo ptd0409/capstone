@@ -5,8 +5,6 @@ resource "aws_eks_cluster" "this" {
   vpc_config {
     subnet_ids = var.subnet_ids
   }
-
-  depends_on = [var.eks_cluster_role_arn]
 }
 
 resource "aws_eks_node_group" "this" {

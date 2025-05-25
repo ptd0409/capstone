@@ -25,17 +25,17 @@ jobs:
 
       - name: Build and push frontend
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }} ./frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }}
+          docker build -f ./frontend/fe.dockerfile -t ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }} ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }}        
 
       - name: Build and push microservice1
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${{ github.ref_name }} ./microservice1
+          docker build -f ./microservice1/microservice1.dockerfile -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${{ github.ref_name }} ./microservice1
           docker push ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${{ github.ref_name }}
 
       - name: Build and push microservice2
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }} ./microservice2
+          docker build -f ./microservice2/microservice2.dockerfile -t ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }} ./microservice2
           docker push ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }}
 
   deploy:
