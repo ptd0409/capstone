@@ -1,11 +1,12 @@
-# Build stage
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN npm install && npm run build
+# Step 1: Build
+FROM node:18-alpine as builder
 
-# Production stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Step 2: Serve with Nginx
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
