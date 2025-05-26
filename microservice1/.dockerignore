@@ -1,6 +1,5 @@
 # Node or Maven dependencies
 node_modules/
-target/
 
 # Build cache
 dist/
