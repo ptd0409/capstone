@@ -89,7 +89,7 @@ jobs:
           echo "NAMESPACE=app-nonprod" >> $GITHUB_ENV
           echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
 
-      - name: Deploy manifests
+      - name: Deploy nonprod components
         run: |
           kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 
