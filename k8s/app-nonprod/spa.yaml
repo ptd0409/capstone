@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spa
-          image: ${secrets.DOCKER_USERNAME}/capstone-frontend:${TAG}
+          image: ${DOCKER_USERNAME}/capstone-frontend:${TAG}
           ports:
             - containerPort: 80
           resources:
