@@ -91,7 +91,7 @@ jobs:
 
       - name: Deploy nonprod components
         run: |
-          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl replace --force -f -
+          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 
           kubectl replace --force -f <(envsubst < k8s/app-nonprod/namespace.yaml)
           kubectl replace --force -f <(envsubst < k8s/app-nonprod/spa.yaml)
