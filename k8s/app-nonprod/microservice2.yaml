@@ -15,9 +15,16 @@ spec:
     spec:
       containers:
         - name: microservice1
-          image: ${{ secrets.DOCKER_USERNAME }}/capstone-microservice1:${TAG}
+          image: ${secrets.DOCKER_USERNAME}/capstone-microservice1:${TAG}
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service

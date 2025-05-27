@@ -15,9 +15,16 @@ spec:
     spec:
       containers:
         - name: spa
-          image: ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${TAG}
+          image: ${secrets.DOCKER_USERNAME}/capstone-frontend:${TAG}
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service

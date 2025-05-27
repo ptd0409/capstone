@@ -97,6 +97,7 @@ jobs:
           kubectl apply -f <(envsubst < k8s/app-nonprod/spa.yaml)
           kubectl apply -f <(envsubst < k8s/app-nonprod/microservice1.yaml)
           kubectl apply -f <(envsubst < k8s/app-nonprod/microservice2.yaml)
+          kubectl apply -f <(envsubst < k8s/app-nonprod/db-secret.yaml)
           kubectl apply -f <(envsubst < k8s/app-nonprod/postgres.yaml)
           kubectl apply -f <(envsubst < k8s/app-nonprod/ingress.yaml)
 
