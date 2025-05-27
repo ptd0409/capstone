@@ -91,13 +91,13 @@ jobs:
 
       - name: Deploy nonprod components
         run: |
-          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl replace --force -f -
 
-          kubectl apply -f <(envsubst < k8s/app-nonprod/namespace.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/spa.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/microservice1.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/microservice2.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/db-secret.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/postgres.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/ingress.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/namespace.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/spa.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/microservice1.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/microservice2.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/db-secret.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/postgres.yaml)
+          kubectl replace --force -f <(envsubst < k8s/app-nonprod/ingress.yaml)
 
