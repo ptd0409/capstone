@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spa
-          image: ${DOCKER_USERNAME}/capstone-frontend:${TAG}
+          image: ptd0409/capstone-frontend:develop
           ports:
             - containerPort: 80
           resources:

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: microservice2
-          image: ${DOCKER_USERNAME}/capstone-microservice2:${TAG}
+          image: ptd0409/capstone-microservice2:develop
           ports:
             - containerPort: 8080
           resources:
