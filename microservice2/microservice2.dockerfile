@@ -1,5 +1,5 @@
 # For both microservices
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 WORKDIR /app
 COPY target/*.jar app.jar
 EXPOSE 8080
