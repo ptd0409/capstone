@@ -36,10 +36,10 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/capstone-frontend:${{ github.ref_name }}
           no-cache: true
 
-      - name: Set up Java 17
+      - name: Set up Java 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
   
       - name: Build microservice1 JAR
