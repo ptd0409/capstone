@@ -16,6 +16,7 @@ spec:
       containers:
         - name: spa
           image: ptd0409/capstone-frontend:develop
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:

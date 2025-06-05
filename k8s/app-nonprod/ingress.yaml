@@ -18,6 +18,13 @@ spec:
                 name: spa
                 port:
                   number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: microservice1
+                port:
+                  number: 8080
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
