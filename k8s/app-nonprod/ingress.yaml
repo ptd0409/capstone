@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: spa.nonprod.local
+    - host: blooperry.com
       http:
         paths:
           - path: /
@@ -18,41 +18,41 @@ spec:
                 name: spa
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: microservice1-ingress
-  namespace: app-nonprod
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: microservice1.nonprod.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: microservice1
-                port:
-                  number: 8080
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: microservice2-ingress
-  namespace: app-nonprod
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: microservice2.nonprod.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: microservice2
-                port:
-                  number: 8080
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: microservice1-ingress
+#   namespace: app-nonprod
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: microservice1.nonprod.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: microservice1
+#                 port:
+#                   number: 8080
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: microservice2-ingress
+#   namespace: app-nonprod
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: microservice2.nonprod.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: microservice2
+#                 port:
+#                   number: 8080

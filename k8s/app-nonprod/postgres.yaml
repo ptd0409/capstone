@@ -9,6 +9,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  storageClassName: gp2
+  volumeMode: Filesystem
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -53,13 +55,6 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
-          volumeMounts:
-            - name: postgres-storage
-              mountPath: /var/lib/postgresql/data
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: db-pvc
 ---
 apiVersion: v1
 kind: Service
