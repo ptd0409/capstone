@@ -16,6 +16,7 @@ spec:
       containers:
         - name: microservice1
           image: ptd0409/capstone-microservice1:develop
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
