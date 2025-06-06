@@ -4,22 +4,22 @@ metadata:
   name: spa-ingress
   namespace: app-nonprod
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - host: blooperry.com
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /()?(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: spa
                 port:
                   number: 80
-          - path: /api/customers
-            pathType: Prefix
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: microservice1
