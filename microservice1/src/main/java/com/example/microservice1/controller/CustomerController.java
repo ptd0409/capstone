@@ -8,7 +8,7 @@ import com.example.microservice1.repository.CustomerRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
     @Autowired
