@@ -18,7 +18,7 @@ spec:
                 name: spa
                 port:
                   number: 80
-          - path: /api
+          - path: /api/customers
             pathType: Prefix
             backend:
               service:
