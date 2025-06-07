@@ -6,7 +6,7 @@ function App() {
 
   // Fetch customers on load
   useEffect(() => {
-    fetch('/api/customers')
+    fetch('/customers')
       .then(res => res.json())
       .then(setCustomers)
       .catch(console.error);
@@ -15,7 +15,7 @@ function App() {
   // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/api/customers', {
+    fetch('/customers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
