@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RootController {
 
-    @GetMapping("/api")
+    @GetMapping("/")
     public String home() {
         return "Welcome to Microservice 1!";
     }
