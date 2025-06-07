@@ -48,9 +48,11 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: POSTGRES_PASSWORD
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata/data
           volumeMounts:
             - name: db-storage
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data/pgdata
           resources:
             requests:
               memory: "256Mi"
