@@ -8,7 +8,9 @@ module "vpc" {
 }
 
 module "iam" {
-  source = "../modules/iam"
+  source                  = "../modules/iam"
+  cluster_name            = var.name
+  ebs_csi_driver_role_arn = module.iam.ebs_csi_driver_role_arn
 }
 
 module "eks" {
@@ -51,3 +53,5 @@ module "bastion" {
   key_name        = var.bastion_key_name
   bastion_name    = "${var.name}-bastion"
 }
+
+

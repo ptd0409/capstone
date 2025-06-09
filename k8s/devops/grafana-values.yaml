@@ -1,0 +1,18 @@
+adminUser: admin
+adminPassword: grafana123
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - grafana.10.0.1.162.nip.io
+  tls: [] # Không bật TLS ở đây
+
+persistence:
+  enabled: true
+  size: 2Gi

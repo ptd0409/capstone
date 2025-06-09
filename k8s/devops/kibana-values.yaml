@@ -1,4 +1,20 @@
+replicaCount: 1
+
+elasticsearchHosts: https://elasticsearch-master.logging.svc:9200
+
+elasticsearchSSLVerificationMode: none
+
+ingress:
+  enabled: false
+
 service:
-  type: NodePort
-  nodePort: 32009
-elasticsearchHosts: "http://elasticsearch.devops.svc.cluster.local:9200"
+  type: ClusterIP
+  port: 5601
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi

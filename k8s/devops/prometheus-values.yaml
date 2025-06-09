@@ -1,9 +1,18 @@
 grafana:
-  service:
-    type: NodePort
-    nodePort: 32006
-  adminPassword: grafanaadmin
+  enabled: false
+alertmanager:
+  enabled: false
 prometheus:
   service:
-    type: NodePort
-    nodePort: 32007
+    type: ClusterIP
+    port: 9090
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 1Gi
+

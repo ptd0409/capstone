@@ -1,7 +1,51 @@
-externalUrl: http://gitlab.devops.local
-initialRootPassword: gitlabadmin
-nginx:
-  enabled: true
+global:
+  edition: ce
+  hosts:
+    domain: "gitlab.local"
+  ingress:
+    enabled: false
+  storageClass: gp2
+
+installCertmanager: false
+
+certmanager-issuer:
+  email: "disabled@example.com"
+  create: false
+
+gitlab-runner:
+  runners:
+    privileged: true
+
+nginx-ingress:
+  enabled: false
+
+webservice:
   service:
-    type: NodePort
-    nodePort: 32001
+    type: ClusterIP
+    externalPort: 80
+
+redis:
+  master:
+    persistence:
+      storageClass: gp2
+      size: 512Mi
+
+postgresql:
+  persistence:
+    storageClass: gp2
+    size: 512Mi
+
+minio:
+  persistence:
+    storageClass: gp2
+    size: 512Mi
+
+prometheus:
+  persistence:
+    storageClass: gp2
+    size: 512Mi
+
+gitaly:
+  persistence:
+    storageClass: gp2
+    size: 512Mi

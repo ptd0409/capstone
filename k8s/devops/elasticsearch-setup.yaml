@@ -1,0 +1,27 @@
+# helm repo add elastic https://helm.elastic.co
+
+# helm repo update
+
+# kubectl create namespace logging
+
+# cat <<EOF > elastic-values.yaml
+# replicas: 1
+# minimumMasterNodes: 1
+# volumeClaimTemplate:
+#   accessModes: ["ReadWriteOnce"]
+#   storageClassName: gp2
+#   resources:
+#     requests:
+#       storage: 10Gi
+# resources:
+#   requests:
+#     cpu: "100m"
+#     memory: "1Gi"
+#   limits:
+#     cpu: "1000m"
+#     memory: "2Gi"
+# EOF
+
+helm install elasticsearch elastic/elasticsearch \
+  --namespace logging \
+  --values elastic-values.yaml

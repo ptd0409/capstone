@@ -9,3 +9,7 @@ output "eks_cluster_endpoint" {
 output "bastion_public_ip" {
   value = module.bastion.public_ip
 }
+
+output "kubeconfig_command" {
+  value = "aws eks --region ${var.aws_region} update-kubeconfig --name ${module.eks.cluster_name}"
+}
