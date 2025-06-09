@@ -4,3 +4,5 @@
 3. kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 4. kubectl get svc -n ingress-nginx
 # Copy external-IP from service of ingress nginx and paste to DNS -> Records in CloudFlare
+5. If frontend changed, run "npm run build" after that
+6. If backend changed, run "mvn clean package" after that
