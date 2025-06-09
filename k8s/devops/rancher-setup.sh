@@ -19,6 +19,8 @@ bootstrapPassword: "admin123"
 
 EOF
 
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.crds.yaml
+
 helm install rancher rancher-alpha/rancher \
   --namespace cattle-system \
   --values rancher-values.yaml \

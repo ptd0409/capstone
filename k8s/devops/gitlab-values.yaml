@@ -1,7 +1,7 @@
 global:
   edition: ce
   hosts:
-    domain: "gitlab.local"
+    domain: "local"
   ingress:
     enabled: false
   storageClass: gp2

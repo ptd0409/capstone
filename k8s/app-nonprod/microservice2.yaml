@@ -18,7 +18,7 @@ spec:
           image: ptd0409/capstone-microservice2:develop
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db:5432/capstone
@@ -51,4 +51,4 @@ spec:
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080
+      targetPort: 8082

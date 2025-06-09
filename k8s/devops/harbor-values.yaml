@@ -1,26 +1,28 @@
 expose:
-  type: ingress
-  ingress:
-    hosts:
-      core: harbor.10.0.1.162.nip.io
-    controller: default
-    ingressClassName: nginx
-    tls:
-      enabled: false
+  type: clusterIP
+  tls:
+    enabled: false
 
-externalURL: http://harbor.10.0.1.162.nip.io
-
-harborAdminPassword: Harbor12345
+externalURL: http://harbor.local
+harborAdminPassword: "Harbor12345"
 
 persistence:
+  enabled: true
   persistentVolumeClaim:
     registry:
+      storageClass: gp2
       size: 5Gi
     jobservice:
+      storageClass: gp2
       size: 1Gi
     database:
-      size: 1Gi
+      storageClass: gp2
+      size: 2Gi
     redis:
+      storageClass: gp2
       size: 1Gi
     trivy:
-      size: 5Gi
+      storageClass: gp2
+      size: 1Gi
+
+logLevel: info

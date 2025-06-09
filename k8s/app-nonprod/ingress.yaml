@@ -26,3 +26,10 @@ spec:
                 name: microservice1
                 port:
                   number: 8080
+          - path: /orders
+            pathType: Prefix
+            backend:
+              service:
+                name: microservice2
+                port:
+                  number: 8080

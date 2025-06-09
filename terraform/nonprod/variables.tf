@@ -19,3 +19,7 @@ variable "node_groups" {
     labels           = map(string)
   }))
 }
+variable "oidc_thumbprint" {
+  default     = "9e99a48a9960b14926bb7f3b02e22da0afd40b11"
+  description = "Amazon Root CA thumbprint for EKS OIDC"
+}

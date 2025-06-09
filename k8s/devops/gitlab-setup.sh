@@ -1,4 +1,4 @@
-helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add gitlab https://charts.gitlab.io
 
 helm repo update
 
@@ -8,7 +8,7 @@ cat <<EOF > gitlab-values.yaml
 global:
   edition: ce
   hosts:
-    domain: "gitlab.local"
+    domain: "local"
   ingress:
     enabled: false
 

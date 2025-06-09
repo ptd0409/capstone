@@ -14,3 +14,8 @@ variable "node_groups" {
     labels           = map(string)
   }))
 }
+
+variable "oidc_thumbprint" {
+  type        = string
+  description = "OIDC thumbprint of Amazon Root CA"
+}
