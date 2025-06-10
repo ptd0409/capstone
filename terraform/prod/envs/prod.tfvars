@@ -1,4 +1,4 @@
-name              = "devops-prod"
+name              = "prod"
 vpc_cidr          = "10.2.0.0/16"
 azs               = ["ap-southeast-1a", "ap-southeast-1b"]
 private_subnets   = ["10.2.1.0/24", "10.2.2.0/24"]
