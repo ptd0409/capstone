@@ -1,9 +1,9 @@
-name: CI/CD - Prod
+name: CI/CD - Hotfix
 
 on:
   push:
     branches:
-      - main
+      - hotfix/*
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -39,7 +39,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-  
+
       - name: Build microservice1 JAR
         run: mvn clean package -f ./microservice1/pom.xml
 
@@ -63,41 +63,3 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }}
           no-cache: true
-
-  deploy:
-    needs: build-push
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Update kubeconfig
-        run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME_NONPROD }}
-
-      - name: Set Namespace and Tag
-        run: |
-          echo "NAMESPACE=app-nonprod" >> $GITHUB_ENV
-          echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
-
-      - name: Deploy nonprod components
-        run: |
-          kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
-
-          kubectl apply -f <(envsubst < k8s/app-nonprod/spa.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/microservice1.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/microservice2.yaml)
-          kubectl apply -f <(envsubst < k8s/app-nonprod/postgres.yaml)
-          
-          kubectl rollout restart deployment spa --namespace app-nonprod
-          kubectl rollout restart deployment microservice1 --namespace app-nonprod
-          kubectl rollout restart deployment microservice2 --namespace app-nonprod
-          kubectl rollout restart deployment postgres --namespace app-nonprod
-
