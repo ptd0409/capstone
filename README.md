@@ -92,8 +92,8 @@
 ## Git branch strategy
 | **branch type** | **Purpose**                     | **(Deploy to)**                  | **Pipeline**            |
 |-----------------|---------------------------------|----------------------------------|-------------------------|
-| `develop`       | Dev tổng, merge feature         | `dev`                            | `ci-cd-nonprod.yaml`    |
-| `feature/*`     | Tính năng mới                   | `dev`                            | `ci-cd-nonprod.yaml`    |
-| `hotfix/*`      | Sửa lỗi gấp                     | `staging`, rồi merge `main`      | `ci-cd-hotfix.yaml`     |
-| `release/*`     | Chuẩn bị release                | `uat`                            | `ci-cd-uat.yaml`        |
+| `develop`       | Merge feature                   | `dev`                            | `ci-cd-nonprod.yaml`    |
+| `feature/*`     | New features                    | `dev`                            | `ci-cd-nonprod.yaml`    |
+| `hotfix/*`      | Fix urgent bug                  | `staging`, rồi merge `main`      | `ci-cd-prod.yaml`       |
+| `release/*`     | Preparing for release           | `uat`                            | `ci-cd-prod.yaml`       |
 | `main`          | Production                      | `staging → production`           | `ci-cd-prod.yaml`       |
