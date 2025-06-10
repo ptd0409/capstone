@@ -62,10 +62,4 @@ jobs:
           file: ./microservice2/microservice2.dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/capstone-microservice2:${{ github.ref_name }}
-<<<<<<< HEAD
           no-cache: true
-
-
-=======
-          no-cache: true
->>>>>>> hotfix/fix-payment-bug
