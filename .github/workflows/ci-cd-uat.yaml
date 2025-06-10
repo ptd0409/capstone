@@ -3,7 +3,7 @@ name: CI/CD - Hotfix
 on:
   push:
     branches:
-      - hotfix/*
+      - release
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
