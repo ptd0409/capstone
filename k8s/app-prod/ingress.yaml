@@ -3,12 +3,13 @@ kind: Ingress
 metadata:
   name: spa-ingress
   namespace: app-prod
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  #   kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
-    - host: spa.prod.local
+    - host: blooperry.com
       http:
         paths:
           - path: /
@@ -18,38 +19,14 @@ spec:
                 name: spa
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: microservice1-ingress
-  namespace: app-prod
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: microservice1.prod.local
-      http:
-        paths:
-          - path: /
+          - path: /customers
             pathType: Prefix
             backend:
               service:
                 name: microservice1
                 port:
                   number: 8080
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: microservice2-ingress
-  namespace: app-prod
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: microservice2.prod.local
-      http:
-        paths:
-          - path: /
+          - path: /orders
             pathType: Prefix
             backend:
               service:

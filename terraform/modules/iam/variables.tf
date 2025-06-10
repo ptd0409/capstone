@@ -1,4 +1,4 @@
 variable "cluster_name" {
-  description = "Tên EKS cluster để dùng cho aws_eks_addon"
+  description = "EKS cluster name for aws_eks_addon"
   type        = string
 }

@@ -1,35 +1,16 @@
-variable "name" {
-  description = "Cluster name and prefix"
-  type        = string
-}
-
-variable "vpc_cidr" {
-  description = "VPC CIDR block"
-  type        = string
-}
-
+variable "name" {}
+variable "vpc_cidr" {}
 variable "azs" {
-  description = "Availability Zones"
-  type        = list(string)
+  type = list(string)
 }
-
 variable "private_subnets" {
-  description = "Private subnet CIDRs"
-  type        = list(string)
+  type = list(string)
 }
-
 variable "public_subnets" {
-  description = "Public subnet CIDRs"
-  type        = list(string)
+  type = list(string)
 }
-
-variable "bastion_key_name" {
-  description = "SSH key name for Bastion EC2"
-  type        = string
-}
-
+variable "bastion_key_name" {}
 variable "node_groups" {
-  description = "Node groups configuration"
   type = map(object({
     desired_capacity = number
     max_capacity     = number
@@ -37,4 +18,8 @@ variable "node_groups" {
     instance_types   = list(string)
     labels           = map(string)
   }))
+}
+variable "oidc_thumbprint" {
+  default     = "9e99a48a9960b14926bb7f3b02e22da0afd40b11"
+  description = "Amazon Root CA thumbprint for EKS OIDC"
 }
