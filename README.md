@@ -88,3 +88,12 @@
   - One `gp2` StorageClass for PVC.
 - **Domain**:
   - Hosted at: [https://blooperry.com](https://blooperry.com)
+
+## Git branch strategy
+| **branch type** | **Purpose**                     | **(Deploy to)**                  | **Pipeline**            |
+|-----------------|---------------------------------|----------------------------------|-------------------------|
+| `develop`       | Merge feature                   | `dev`                            | `ci-cd-nonprod.yaml`    |
+| `feature/*`     | New features                    | `dev`                            | `ci-cd-nonprod.yaml`    |
+| `hotfix/*`      | Fix urgent bug                  | `staging`, rồi merge `main`      | `ci-cd-prod.yaml`       |
+| `release/*`     | Preparing for release           | `uat`                            | `ci-cd-prod.yaml`       |
+| `main`          | Production                      | `staging → production`           | `ci-cd-prod.yaml`       |
