@@ -21,11 +21,11 @@
    ```
 3. Apply Terraform with environment-specific variables:
    ```bash
-   terraform apply -var-file=envs/dev.tfvars
+   terraform apply -var-file=envs/nonprod.tfvars (or prod.tfvars)
    ```
 4. Update kubeconfig for EKS:
    ```bash
-   aws eks --region ${var.aws_region} update-kubeconfig --name ${module.eks.cluster_name}
+   aws eks --region <your-region> update-kubeconfig --name <your-cluster-name>
    ```
 5. If modifying frontend:
    ```bash
