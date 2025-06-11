@@ -39,7 +39,6 @@
    ```
 7. Apply Kubernetes manifests in order:
    ```bash
-   kubectl apply -f sc-gp2.yaml
    kubectl apply -f namespace.yaml
    kubectl apply -f db-secret.yaml
    kubectl apply -f postgres.yaml
