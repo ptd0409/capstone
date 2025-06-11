@@ -96,3 +96,10 @@
 | `hotfix/*`      | Fix urgent bug                  | `staging`, rồi merge `main`      | `ci-cd-prod.yaml`       |
 | `release/*`     | Preparing for release           | `uat`                            | `ci-cd-prod.yaml`       |
 | `main`          | Production                      | `staging → production`           | `ci-cd-prod.yaml`       |
+
+## CI/CD
+
+- **Non-production**:
+  - Integrate and deploy
+- **Production**:
+  - Do not auto deploy
